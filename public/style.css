@@ -49,7 +49,21 @@ a{
 }
 
 @media (max-width: 1028px) {
+
+    h2{
+        font-size: 42px;
+    }
+
+    h3{
+        font-size: 38px;
+    }
+
+    li, a{
+        font-size: 28px;
+    }
+
     .grid-container {
+        width: 90%;
         flex-direction: column;
     }
 
