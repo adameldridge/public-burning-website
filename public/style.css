@@ -9,7 +9,8 @@ a{
 }
 
 .logo{
-    width: 400px;
+    width: 40%;
+    max-width: 800px;
     margin: auto;
 }
 .logo img{
@@ -60,6 +61,11 @@ a{
 
     li, a{
         font-size: 28px;
+    }
+
+    .logo{
+        width: 90%;
+        margin: auto;
     }
 
     .grid-container {
