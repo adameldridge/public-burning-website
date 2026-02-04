@@ -1,0 +1,78 @@
+body{
+    background-color: #000;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+a{
+    color: #ffffff;
+}
+
+.logo{
+    width: 400px;
+    margin: auto;
+}
+.logo img{
+    width: 100%;
+}
+
+.grid-container {
+    width: 85%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.music{
+    min-width: 500px;
+}
+
+.music-contact{
+    margin-right: 50px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.contact{
+    margin-top: 30px;
+}
+
+.gigs{
+    min-width: 300px;
+}
+
+.gigs li {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.4;
+}
+
+@media (max-width: 1028px) {
+
+    h2{
+        font-size: 42px;
+    }
+
+    h3{
+        font-size: 38px;
+    }
+
+    li, a{
+        font-size: 28px;
+    }
+
+    .grid-container {
+        width: 90%;
+        flex-direction: column;
+    }
+
+    .music-contact {
+        margin-right: 0;
+    }
+
+    .gigs {
+        margin-top: 20px;
+        min-width: auto;
+    }
+}
