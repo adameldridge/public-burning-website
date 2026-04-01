@@ -23,17 +23,23 @@ a {
 
 /* LAYOUT */
 .grid-container {
-    width: 85%;
+    max-width: 1200px;   /* keeps things centered nicely */
     margin: auto;
     display: flex;
     gap: 40px;
+    align-items: flex-start; /* prevents weird vertical stretching */
 }
 
 /* LEFT COLUMN */
 .music-contact {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
+    flex: 1;
+    min-width: 0; /* 🔑 VERY IMPORTANT: allows shrinking */
+}
+
+/* RIGHT COLUMN */
+.gigs {
+    flex: 1;
+    min-width: 0; /* 🔑 prevents overflow pushing it right */
 }
 
 /* REMOVE min-width (important) */
@@ -44,6 +50,7 @@ a {
 .contact {
     margin-top: 30px;
 }
+
 
 /* RIGHT COLUMN */
 .gigs {
