@@ -1,84 +1,95 @@
-body{
+body {
     background-color: #000;
     color: #fff;
     font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
 }
 
-a{
+a {
     color: #ffffff;
 }
 
-.logo{
+/* LOGO */
+.logo {
     width: 40%;
     max-width: 800px;
-    margin: auto;
+    margin: 20px auto;
 }
-.logo img{
+.logo img {
     width: 100%;
+    height: auto;
 }
 
+/* LAYOUT */
 .grid-container {
     width: 85%;
     margin: auto;
     display: flex;
-    flex-direction: row;
+    gap: 40px;
 }
 
-.music{
-    min-width: 500px;
-}
-
-.music-contact{
-    margin-right: 50px;
+/* LEFT COLUMN */
+.music-contact {
+    flex: 2;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
 }
 
-.contact{
+/* REMOVE min-width (important) */
+.music {
+    width: 100%;
+}
+
+.contact {
     margin-top: 30px;
 }
 
-.gigs{
-    min-width: 300px;
+/* RIGHT COLUMN */
+.gigs {
+    flex: 1;
 }
 
+/* TEXT WRAP */
 .gigs li {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
     line-height: 1.4;
+    word-break: break-word;
 }
 
-@media (max-width: 1028px) {
+/* 📱 MOBILE FIX */
+@media (max-width: 768px) {
 
-    h2{
-        font-size: 42px;
+    .logo {
+        width: 95%;
+        margin-bottom: 0px;
     }
 
-    h3{
-        font-size: 38px;
-    }
-
-    li, a{
-        font-size: 28px;
-    }
-
-    .logo{
-        width: 90%;
-        margin: auto;
+    .gigs ul {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
     }
 
     .grid-container {
         width: 90%;
         flex-direction: column;
+        gap: 20px;
     }
 
-    .music-contact {
-        margin-right: 0;
+    h2 {
+        font-size: 24px;
+        margin-top: 5px;
     }
 
-    .gigs {
-        margin-top: 20px;
-        min-width: auto;
+    h3 {
+        font-size: 16px;
+    }
+
+    li, a, p {
+        font-size: 14px;
+    }
+
+    iframe {
+        height: 200px; /* slightly smaller embed */
     }
 }
