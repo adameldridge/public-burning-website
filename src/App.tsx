@@ -1,8 +1,9 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { DO_NOT_USE_OR_YOU_WILL_BE_FIRED_CALLBACK_REF_RETURN_VALUES, useEffect, useState } from "react";
 import { db } from "./firebase/config";
 import { collection, getDocs } from "firebase/firestore";
 import logo from "./imgs/flaming-logo.gif";
+import { DO_NOT_USE_OR_YOU_WILL_BE_FIRED_EXPERIMENTAL_CREATE_ROOT_CONTAINERS } from "react-dom/client";
 
 type Gig = {
     id: string;
@@ -12,18 +13,31 @@ type Gig = {
     bands: string[];
 };
 
+
 function App() {
     const [gigs, setGigs] = useState<Gig[]>([]);
+    const [yearGigMap, setYearGigMap] = useState(new Map<number,Gig[]>())
 
 
     async function loadGigs(){
         const gigsSnapshot = await getDocs(collection(db, "gigs"));
 
-        setGigs(gigsSnapshot.docs.map((doc) => ({
+        const loadedGigs = gigsSnapshot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data(),
             date: doc.data().date.toDate(),
-        })) as Gig[])
+        })) as Gig[];
+
+        setGigs(loadedGigs);
+
+        const newYearGigMap = new Map<number, Gig[]>();
+        loadedGigs.forEach((gig) => {
+            const year = gig.date.getFullYear();
+            const gigsForYear = newYearGigMap.get(year) ?? [];
+            gigsForYear.push(gig);
+            newYearGigMap.set(year, gigsForYear);
+        });
+        setYearGigMap(newYearGigMap);
     }
 
     useEffect(() => {
@@ -31,7 +45,7 @@ function App() {
         loadGigs();
     }, []);
 
-    useEffect(() => console.log(gigs), [gigs])
+    useEffect(() => console.log(yearGigMap), [yearGigMap])
 
 
     return (
