@@ -1,31 +1,24 @@
 import "./App.css";
 import { Fragment, useEffect, useMemo, useState } from "react";
-import { db } from "./firebase/config";
-import { collection, getDocs } from "firebase/firestore";
+import { getGigs, type Gig } from "./gigs";
+import Admin from "./Admin";
 import logo from "./imgs/flaming-logo.gif";
-
-type Gig = {
-    id: string;
-    venue: string;
-    city: string;
-    date: Date;
-    bands: string[];
-};
 
 function App() {
     const [gigs, setGigs] = useState<Gig[]>([]);
     const [error, setError] = useState<string | null>(null);
+    const [hash, setHash] = useState(() => window.location.hash);
+
+    useEffect(() => {
+        const onHashChange = () => setHash(window.location.hash);
+        window.addEventListener("hashchange", onHashChange);
+        return () => window.removeEventListener("hashchange", onHashChange);
+    }, []);
 
     useEffect(() => {
         async function loadGigs() {
             try {
-                const gigsSnapshot = await getDocs(collection(db, "gigs"));
-                const loadedGigs = gigsSnapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data(),
-                    date: doc.data().date.toDate(),
-                })) as Gig[];
-                setGigs(loadedGigs);
+                setGigs(await getGigs());
             } catch (err) {
                 console.error(err);
                 setError("Couldn't load gigs right now.");
@@ -47,7 +40,12 @@ function App() {
         return map;
     }, [gigs]);
 
+    if (hash === "#admin") {
+        return <Admin />;
+    }
+
     return (
+        <>
         <div className="container">
             <div className="header">
                 <img src={logo} alt="Public Burning logo" />
@@ -111,6 +109,10 @@ function App() {
                 </table>
             </div>
         </div>
+        <div className="site-footer">
+            <a href="#admin">[admin]</a>
+        </div>
+        </>
     );
 }
 
