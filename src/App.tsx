@@ -67,33 +67,48 @@ function App() {
             </div>
             <div className="contact">
                 <h2>Contact</h2>
-                <p>
-                    <a href="mailto:publicburning@proton.me">publicburning@proton.me</a>
-                </p>
-                <p>
-                    <a href="https://www.instagram.com/public_burning"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                    >
-                        instagram
-                    </a>
-                </p>
+                <table className="contact-table">
+                    <tbody>
+                        <tr>
+                            <td className="contact-label">[mail]</td>
+                            <td><a href="mailto:publicburning@proton.me">publicburning@proton.me</a></td>
+                        </tr>
+                        <tr>
+                            <td className="contact-label">[ig]</td>
+                            <td>
+                                <a href="https://www.instagram.com/public_burning"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                >
+                                    public_burning
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div className="gigs">
                 <h2>Gigs</h2>
                 {error && <p>{error}</p>}
-                {[...gigsByYear.entries()].map(([year, yearGigs]) => (
-                    <Fragment key={year}>
-                        <h3>{year}</h3>
-                        <ul>
-                            {yearGigs.map((gig) => (
-                                <li key={gig.id}>
-                                    {gig.date.toLocaleDateString()} - {gig.venue}, {gig.city} - w/ {gig.bands.join(', ')}
-                                </li>
-                            ))}
-                        </ul>
-                    </Fragment>
-                ))}
+                <table className="gigs-table">
+                    <tbody>
+                        {[...gigsByYear.entries()].map(([year, yearGigs]) => (
+                            <Fragment key={year}>
+                                <tr className="gigs-year-row">
+                                    <td colSpan={4}>{year}</td>
+                                </tr>
+                                {yearGigs.map((gig) => (
+                                    <tr key={gig.id} className={gig.date >= new Date() ? "gig-upcoming" : undefined}>
+                                        <td>{gig.date.toLocaleDateString()}</td>
+                                        <td>{gig.venue}</td>
+                                        <td>{gig.city}</td>
+                                        <td>w/ {gig.bands.join(', ')}</td>
+                                    </tr>
+                                ))}
+                            </Fragment>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         </div>
     );

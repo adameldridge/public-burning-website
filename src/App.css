@@ -11,15 +11,11 @@ a {
 }
 
 /* LOGO */
-.logo {
+.container div.header img {
     width: 60%;
     max-width: 500px;
-    margin: 20px auto 5px auto;
-}
-
-.logo img {
-    width: 100%;
     height: auto;
+    margin: 20px auto 5px auto;
 }
 
 /* LAYOUT */
@@ -32,7 +28,8 @@ a {
     "music contact"
     "gigs gigs";
     grid-template-columns: 4fr 2fr;
-    gap: 3px;
+    row-gap: 3px;
+    column-gap: 40px;
     padding: 5px;
 }
 
@@ -52,11 +49,47 @@ a {
 }
 .container div.gigs {
   grid-area: gigs;
-  text-align: center;  
 }
 
 .music iframe {
     width: 100%;
+}
+
+.gigs-table {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+}
+
+.gigs-table td {
+    text-align: left;
+    padding: 2px 32px 2px 0;
+    vertical-align: top;
+    font-size: 15px;
+}
+
+.gigs-table td:nth-child(1),
+.gigs-table td:nth-child(2),
+.gigs-table td:nth-child(3) {
+    white-space: nowrap;
+}
+
+.gigs-table td:nth-child(4) {
+    width: 100%;
+    padding-right: 0;
+    word-break: break-word;
+}
+
+.gig-upcoming td {
+    color: #ff7a1a;
+}
+
+.gigs-year-row td {
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 12px;
+    padding-bottom: 6px;
+    white-space: normal;
 }
 
 
@@ -73,6 +106,22 @@ a {
 .gigs li {
     line-height: 1.4;
     word-break: break-word;
+}
+
+/* CONTACT TABLE */
+.contact-table {
+    border-collapse: collapse;
+}
+
+.contact-table td {
+    padding: 3px 0;
+    vertical-align: top;
+}
+
+.contact-table td.contact-label {
+    padding-right: 18px;
+    opacity: 0.7;
+    white-space: nowrap;
 }
 
 /* TYPOGRAPHY */
@@ -99,18 +148,22 @@ p, li, a {
         padding-bottom: 30px;
     }
 
-    .logo {
+    .container div.header img {
         width: 85%;
         margin: 20px auto 0px auto;
     }
 
-    .grid-container {
+    .container {
         width: 100%;
+        margin: 0;
         padding: 0 15px;
         box-sizing: border-box;
-        flex-direction: column;
-        gap: 20px;
-        margin-top: 0px;
+        grid-template-areas:
+        "header header"
+        "music music"
+        "contact contact"
+        "gigs gigs";
+        row-gap: 20px;
     }
 
 
@@ -124,6 +177,37 @@ p, li, a {
 
     .gigs {
         margin-top: 5px;
+        width: 100%;
+    }
+
+    .gigs-table {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+
+    /* Stack each gig as a block instead of a 4-column row */
+    .gigs-table, .gigs-table tbody, .gigs-table tr, .gigs-table td {
+        display: block;
+        width: auto;
+    }
+
+    .gigs-table tr:not(.gigs-year-row) {
+        padding: 8px 0;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.25);
+    }
+
+    .gigs-table tr:last-child {
+        border-bottom: none;
+    }
+
+    .gigs-table td {
+        padding: 1px 0;
+        white-space: normal;
+    }
+
+    .gigs-table td:nth-child(1) {
+        font-weight: bold;
     }
 
     h2 {
@@ -135,6 +219,10 @@ p, li, a {
     }
 
     p, li, a {
+        font-size: 14px;
+    }
+
+    .gigs-table td {
         font-size: 14px;
     }
 }
