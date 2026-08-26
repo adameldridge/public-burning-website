@@ -1,0 +1,228 @@
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #ffffff;
+}
+
+/* LOGO */
+.container div.header img {
+    width: 60%;
+    max-width: 500px;
+    height: auto;
+    margin: 20px auto 5px auto;
+}
+
+/* LAYOUT */
+.container {
+    width: 60%;
+    margin: 0% 20%;
+    display: grid;
+    grid-template-areas:
+    "header header"
+    "music contact"
+    "gigs gigs";
+    grid-template-columns: 4fr 2fr;
+    row-gap: 3px;
+    column-gap: 40px;
+    padding: 5px;
+}
+
+.container div {
+  padding: 1px;
+}
+
+.container div.header {
+  grid-area: header;
+  text-align: center;
+}
+.container div.music {
+  grid-area: music;
+}
+.container div.contact {
+  grid-area: contact;
+}
+.container div.gigs {
+  grid-area: gigs;
+}
+
+.music iframe {
+    width: 100%;
+}
+
+.gigs-table {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+}
+
+.gigs-table td {
+    text-align: left;
+    padding: 2px 32px 2px 0;
+    vertical-align: top;
+    font-size: 15px;
+}
+
+.gigs-table td:nth-child(1),
+.gigs-table td:nth-child(2),
+.gigs-table td:nth-child(3) {
+    white-space: nowrap;
+}
+
+.gigs-table td:nth-child(4) {
+    width: 100%;
+    padding-right: 0;
+    word-break: break-word;
+}
+
+.gig-upcoming td {
+    color: #ff7a1a;
+}
+
+.gigs-year-row td {
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 12px;
+    padding-bottom: 6px;
+    white-space: normal;
+}
+
+
+/* GIG LIST (no lines, tighter spacing) */
+.gigs ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    gap: 8px;
+}
+
+.gigs li {
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+/* CONTACT TABLE */
+.contact-table {
+    border-collapse: collapse;
+}
+
+.contact-table td {
+    padding: 3px 0;
+    vertical-align: top;
+}
+
+.contact-table td.contact-label {
+    padding-right: 18px;
+    opacity: 0.7;
+    white-space: nowrap;
+}
+
+/* TYPOGRAPHY */
+h2 {
+    font-size: 28px;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+}
+
+h3 {
+    font-size: 18px;
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
+
+p, li, a {
+    font-size: 15px;
+}
+
+
+@media (max-width: 768px) {
+
+    body {
+        padding-bottom: 30px;
+    }
+
+    .container div.header img {
+        width: 85%;
+        margin: 20px auto 0px auto;
+    }
+
+    .container {
+        width: 100%;
+        margin: 0;
+        padding: 0 15px;
+        box-sizing: border-box;
+        grid-template-areas:
+        "header header"
+        "music music"
+        "contact contact"
+        "gigs gigs";
+        row-gap: 20px;
+    }
+
+
+    .music iframe {
+        height: 240px;
+    }
+
+    .contact {
+        margin-top: 10px;
+    }
+
+    .gigs {
+        margin-top: 5px;
+        width: 100%;
+    }
+
+    .gigs-table {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+
+    /* Stack each gig as a block instead of a 4-column row */
+    .gigs-table, .gigs-table tbody, .gigs-table tr, .gigs-table td {
+        display: block;
+        width: auto;
+    }
+
+    .gigs-table tr:not(.gigs-year-row) {
+        padding: 8px 0;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.25);
+    }
+
+    .gigs-table tr:last-child {
+        border-bottom: none;
+    }
+
+    .gigs-table td {
+        padding: 1px 0;
+        white-space: normal;
+    }
+
+    .gigs-table td:nth-child(1) {
+        font-weight: bold;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    p, li, a {
+        font-size: 14px;
+    }
+
+    .gigs-table td {
+        font-size: 14px;
+    }
+}
