@@ -39,7 +39,9 @@ function App() {
         const map = new Map<number, Gig[]>();
         for (const gig of [...gigs].sort((a, b) => b.date.getTime() - a.date.getTime())) {
             const year = gig.date.getFullYear();
-            if (!map.has(year)) map.set(year, []);
+            if (!map.has(year)){
+                map.set(year, []);
+            } 
             map.get(year)!.push(gig);
         }
         return map;
@@ -66,9 +68,7 @@ function App() {
             <div className="contact">
                 <h2>Contact</h2>
                 <p>
-                    <a href="mailto:publicburning@proton.me">
-                        publicburning@proton.me
-                    </a>
+                    <a href="mailto:publicburning@proton.me">publicburning@proton.me</a>
                 </p>
                 <p>
                     <a href="https://www.instagram.com/public_burning"
