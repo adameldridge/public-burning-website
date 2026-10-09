@@ -15,6 +15,7 @@ export type Gig = {
     city: string;
     date: Date;
     bands: string[];
+    ticketUrl?: string;
 };
 
 export type GigInput = {
@@ -22,6 +23,7 @@ export type GigInput = {
     city: string;
     date: Date;
     bands: string[];
+    ticketUrl: string;
 };
 
 const gigsCollection = collection(db, "gigs");
