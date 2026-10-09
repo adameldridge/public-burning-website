@@ -60,6 +60,7 @@ function GigForm({
     const [city, setCity] = useState(initial?.city ?? "");
     const [date, setDate] = useState(toDateInputValue(initial?.date ?? new Date()));
     const [bands, setBands] = useState(initial?.bands.join(", ") ?? "");
+    const [ticketUrl, setTicketUrl] = useState(initial?.ticketUrl ?? "");
     const [submitting, setSubmitting] = useState(false);
 
     async function handleSubmit(e: FormEvent) {
@@ -71,6 +72,7 @@ function GigForm({
                 city,
                 date: new Date(date),
                 bands: bands.split(",").map((band) => band.trim()).filter(Boolean),
+                ticketUrl: ticketUrl.trim(),
             });
         } finally {
             setSubmitting(false);
@@ -86,6 +88,12 @@ function GigForm({
                 placeholder="Bands (comma separated)"
                 value={bands}
                 onChange={(e) => setBands(e.target.value)}
+            />
+            <input
+                type="url"
+                placeholder="Ticket link (optional)"
+                value={ticketUrl}
+                onChange={(e) => setTicketUrl(e.target.value)}
             />
             <div className="gig-form-actions">
                 <button type="submit" disabled={submitting}>
@@ -168,6 +176,7 @@ function GigEditor() {
                                 <span>
                                     {gig.date.toLocaleDateString()} — {gig.venue}, {gig.city}
                                     {gig.bands.length > 0 && ` (w/ ${gig.bands.join(", ")})`}
+                                    {gig.ticketUrl && " [tickets]"}
                                 </span>
                                 <span className="gig-row-actions">
                                     <button onClick={() => setEditingId(gig.id)}>Edit</button>

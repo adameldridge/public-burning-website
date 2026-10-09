@@ -2,7 +2,7 @@ import "./App.css";
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { getGigs, type Gig } from "./gigs";
 import Admin from "./Admin";
-import logo from "./imgs/flaming-logo.gif";
+import logo from "./imgs/hotwheels-logo.png";
 
 function App() {
     const [gigs, setGigs] = useState<Gig[]>([]);
@@ -39,6 +39,9 @@ function App() {
         }
         return map;
     }, [gigs]);
+
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
 
     if (hash === "#admin") {
         return <Admin />;
@@ -93,16 +96,29 @@ function App() {
                         {[...gigsByYear.entries()].map(([year, yearGigs]) => (
                             <Fragment key={year}>
                                 <tr className="gigs-year-row">
-                                    <td colSpan={4}>{year}</td>
+                                    <td colSpan={5}>{year}</td>
                                 </tr>
-                                {yearGigs.map((gig) => (
-                                    <tr key={gig.id} className={gig.date >= new Date() ? "gig-upcoming" : undefined}>
-                                        <td>{gig.date.toLocaleDateString()}</td>
-                                        <td>{gig.venue}</td>
-                                        <td>{gig.city}</td>
-                                        <td>w/ {gig.bands.join(', ')}</td>
-                                    </tr>
-                                ))}
+                                {yearGigs.map((gig) => {
+                                    const upcoming = gig.date >= startOfToday;
+                                    return (
+                                        <tr key={gig.id} className={upcoming ? "gig-upcoming" : undefined}>
+                                            <td>{gig.date.toLocaleDateString()}</td>
+                                            <td>{gig.venue}</td>
+                                            <td>{gig.city}</td>
+                                            <td>w/ {gig.bands.join(', ')}</td>
+                                            <td>
+                                                {upcoming && gig.ticketUrl && (
+                                                    <a href={gig.ticketUrl}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                    >
+                                                        [tickets]
+                                                    </a>
+                                                )}
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
                             </Fragment>
                         ))}
                     </tbody>
