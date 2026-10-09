@@ -216,6 +216,12 @@ p, li, a {
     .gigs-table td {
         padding: 1px 0;
         white-space: normal;
+        font-size: 14px;
+    }
+
+    .gigs-year-row td{
+        font-size:20px;
+        padding-top: 14px;
     }
 
     .gigs-table td:nth-child(1) {
@@ -231,10 +237,6 @@ p, li, a {
     }
 
     p, li, a {
-        font-size: 14px;
-    }
-
-    .gigs-table td {
         font-size: 14px;
     }
 }
