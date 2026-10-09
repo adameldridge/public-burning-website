@@ -2,7 +2,7 @@ import "./App.css";
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { getGigs, type Gig } from "./gigs";
 import Admin from "./Admin";
-import logo from "./imgs/flaming-logo.gif";
+import logo from "./imgs/hotwheels-logo.png";
 
 function App() {
     const [gigs, setGigs] = useState<Gig[]>([]);
