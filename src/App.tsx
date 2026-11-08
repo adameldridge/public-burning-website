@@ -102,7 +102,7 @@ function App() {
                                     const upcoming = gig.date >= startOfToday;
                                     return (
                                         <tr key={gig.id} className={upcoming ? "gig-upcoming" : undefined}>
-                                            <td>{gig.date.toLocaleDateString()}</td>
+                                            <td>{gig.date.toLocaleDateString("en-GB")}</td>
                                             <td>{gig.venue}</td>
                                             <td>{gig.city}</td>
                                             <td>w/ {gig.bands.join(', ')}</td>
